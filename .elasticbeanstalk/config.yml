@@ -1,0 +1,10 @@
+branch-defaults:
+  master:
+    environment: mukuzu-prod
+global:
+  application_name: Mukuzu
+  default_ec2_keyname: keinuec2
+  default_platform: Node.js
+  default_region: eu-west-1
+  profile: eb-cli
+  sc: git

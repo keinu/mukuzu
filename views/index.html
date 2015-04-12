@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>{{title}}</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link href='http://fonts.googleapis.com/css?family=Raleway:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="http://www.keinu.net/css/css.css">
+	<link rel="stylesheet" href="/css/css.css" />
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+  </head>
+  <body>
+
+   <header id="navwrapper">
+		<nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
+			<div class="container" role='banner'>
+
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a href="{/" class="navbar-brand">
+						<img src="http://www.keinu.net/images/keinu-glow.png"
+							data-hover-src="http://www.keinu.net/images/keinu-raw.png" alt="{{title}}" />
+					</a>
+				</div>
+
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav">
+						<li>
+							<a class="page-link" href="http://www.keinu.net">About me</a>
+						</li>
+						<li>
+							<a class="page-link" href="http://www.keinu.net/resume/">Résumé</a>
+						</li>
+						<li>
+							<a class="page-link" href="http://www.keinu.net/music/">Music</a>
+						</li>
+						<li class="active">
+							<a class="page-link" href="/">Sandpit</a>
+						</li>
+						<li>
+							<a class="page-link" href="http://www.keinu.net/resume/contact/">Contact</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</header>
+
+  	<div class="container">
+	    <h1>
+	    	Decrypter
+			<!-- Button trigger modal -->
+			<button type="button" class="btn btn-primary btn-lg" id="decrypt">
+				Decrypt images
+			</button>
+	    </h1>
+    </div>
+
+    <div class="container images">
+      <img src="images/1.jpg" />
+      <img src="images/2.jpg" />
+      <img src="images/3.jpg" />
+      <img src="images/4.jpg" />
+      <img src="images/5.jpg" />
+      <img src="images/6.jpg" />
+    </div>
+
+
+	<!-- Modal -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="text-center">
+
+					<h1>To decrypt images</h1>
+
+					<div class="content">
+						<p>
+							Get the key code and decrypt images
+						</p>
+
+						<button class="btn" id="getKey">Get key and decrypt!</button>
+
+						<h2>Or</h2>
+
+						<p>Consider a bitcoin donation to decrypt the image, any amount works.</p>
+						<p>The decryption will start as soon as the transaction is propagated to the network</p>
+
+						<div id="qrcode">
+							<div id="qrcodecontent"></div>
+						</div>
+
+						<a class="paymentlink" href="#"></a>
+
+					</div>
+
+					<div class="buttons">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Got it, now let me alone</button>
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+    <script src="//crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/aes.js"></script>
+    <script src="//crypto-js.googlecode.com/svn/tags/3.1.2/build/components/enc-base64-min.js"></script>
+    <script src="//code.jquery.com/jquery-2.1.3.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/async/0.9.0/async.js"></script>
+    <script src="//rawgit.com/keinu/loada/master/loada.js?ts=4"></script>
+
+    <script src="/js/qrcode.min.js"></script>
+    <script src="/js/decrypter.js"></script>
+    <script src="/js/keyring.js"></script>
+    <script src="/js/js.js"></script>
+
+  </body>
+</html>

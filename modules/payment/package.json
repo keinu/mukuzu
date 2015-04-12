@@ -1,0 +1,14 @@
+{
+  "name": "payment",
+  "version": "0.0.0",
+  "description": "Payment plugin that uses the Blockachain.info api to request and process payments",
+  "main": "payment.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ws": "^0.7.1"
+  }
+}
