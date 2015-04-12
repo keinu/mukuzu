@@ -2,8 +2,7 @@ var defaultContext = {
     title: 'Mukuzu, the sandpit'
 };
 
-var Hapi = require('hapi'),
-	fs = require('fs');
+var Hapi = require('hapi');
 
 // Create a server with a host and port
 var server = new Hapi.Server();
@@ -40,7 +39,7 @@ server.register({
 		register: require('./modules/payment'),
 		options: {
 			recipient: "1LfP5qTTyxrPNWKxRUU5auDDTfBejh1sQ7",
-			callbackUrl: "http://encrypter/payment/callback/{galleryId}/{clientId}",
+			callbackUrl: "http://mukuzu-prod.elasticbeanstalk.com/payment/callback/{galleryId}/{clientId}",
 		}
 	},
 	{

@@ -1,6 +1,6 @@
 {
-  "name": "image-encrypter",
-  "version": "0.0.0",
+  "name": "mukuzu",
+  "version": "0.0.1",
   "description": "",
   "main": "app.js",
   "scripts": {
@@ -10,7 +10,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "crypto-js": "^3.1.4",
     "handlebars": "^3.0.1",
     "hapi": "^8.4.0"
   }
