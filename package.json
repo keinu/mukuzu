@@ -1,7 +1,7 @@
 {
   "name": "mukuzu",
-  "version": "0.0.1",
-  "description": "",
+  "version": "0.1.0",
+  "description": "Sandpit API provider for various personal projects",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -11,6 +11,15 @@
   "license": "ISC",
   "dependencies": {
     "handlebars": "^3.0.1",
-    "hapi": "^8.4.0"
+    "hapi": "^8.4.0",
+    "joi": "^6.1.1",
+    "nodemailer": "^1.3.2",
+    "namecheap-checker": "keinu/namecheap-checker",
+    "async": "^0.9.0",
+    "nedb": "^1.1.1",
+    "request": "^2.53.0",
+    "crypto-js": "^3.1.4",
+    "gm": "^1.17.0",
+    "ws": "^0.7.1"
   }
 }
