@@ -8,7 +8,7 @@ var Hapi = require('hapi');
 var server = new Hapi.Server();
 server.connection({
     host: 'encrypter',
-    port: 8080,
+    port: process.env.NODE_PORT || 8080,
     routes: {
       cors: true
     }
