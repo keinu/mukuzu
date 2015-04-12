@@ -96,9 +96,7 @@ exports.register = function (server, options, next) {
 
 		});
 
-
 		fs.writeFileSync(detinationPath + "key.json", JSON.stringify(key));
-
 
 	};
 
@@ -124,6 +122,27 @@ exports.register = function (server, options, next) {
 			encryptGallery(req.params.galleryId);
 			reply("done");
 	    }
+	});
+
+	server.route({
+		method: 'POST',
+		path: '/upload',
+		config: {
+			payload: {
+				maxBytes: 209715200,
+				output:'stream',
+				parse: true
+			}
+		},
+		handler: function (request, reply) {
+
+			var fileNumber = 1;
+			var files = request.payload.file;
+			files.forEach(function(file) {
+				file.pipe(fs.createWriteStream(ORIGINALS_PATH + "/1/" + fileNumber++ + ".jpg"));
+			});
+
+		}
 	});
 
 	server.route({
