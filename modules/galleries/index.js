@@ -4,7 +4,7 @@ var fs = require("fs"),
     SEPARATOR = "+FFFFFF+",
     ORIGINALS_PATH = "/public/originals/",
     GALLERIES_PATH = "/public/galleries/",
-    PUBLIC_GALLERIES_PATH = "/galleries/",
+    PUBLIC_GALLERIES_PATH = "/public/galleries/",
     TMP_PATH = "/public/tmp/";
 
 exports.register = function (server, options, next) {
