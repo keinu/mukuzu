@@ -89,7 +89,7 @@ exports.register = function (server, options, next) {
 
 			data.forEach(function(provider) {
 				if (provider.length === 1) {
-					response.unshift(provider);
+					response.unshift(provider[0]);
 				} else {
 					response = response.concat(provider);
 				}
