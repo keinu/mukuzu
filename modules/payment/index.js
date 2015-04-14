@@ -1,28 +1,49 @@
 var WebSocketServer = require('ws').Server,
-	wss = new WebSocketServer({ port: 8000 }),
 	request = require("request"),
-	fs = require("fs");
+	fs = require("fs"),
+	socketsIo = require('socket.io');
 
 exports.register = function (server, options, next) {
 
 	var clientList = [];
-	wss.on('connection', function connection(ws) {
 
-		var clientId = ws.upgradeReq.url.substring(1);
-		console.log(clientId);
+	var io = socketsIo.listen(server.listener);
 
-		clientList[clientId] = ws;
+	io.sockets.on('connection', function (socket) {
 
-		ws.on('message', function incoming(message) {
-			console.log('received: %s by %s', message, clientId);
-		});
+		var clientId = Math.random().toString(36).slice(2);
 
-		ws.on('close', function close() {
-			console.log('%s disconnected', clientId);
+		socket.emit("message", { clientId: clientId });
+		console.log("emmitted");
+
+		clientList[clientId] = socket;
+
+		socket.on("close", function() {
+			console.log("Disonnected", clientId);
 			delete clientList[clientId];
 		});
 
 	});
+
+
+	// var wss = new WebSocketServer({ server: server });
+	// wss.on('connection', function connection(ws) {
+
+	// 	var clientId = ws.upgradeReq.url.substring(1);
+	// 	console.log(clientId);
+
+	// 	clientList[clientId] = ws;
+
+	// 	ws.on('message', function incoming(message) {
+	// 		console.log('received: %s by %s', message, clientId);
+	// 	});
+
+	// 	ws.on('close', function close() {
+	// 		console.log('%s disconnected', clientId);
+	// 		delete clientList[clientId];
+	// 	});
+
+	// });
 
 
 	server.route({
@@ -66,7 +87,7 @@ exports.register = function (server, options, next) {
 						done: true,
 						key: key
 					};
-					clientList[req.params.clientId].send(JSON.stringify(message));
+					clientList[req.params.clientId].emit("message", JSON.stringify(message));
 				}
 				reply("*ok*");
 
