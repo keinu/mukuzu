@@ -39,6 +39,7 @@ server.register({
 		options: {
 			recipient: "1LfP5qTTyxrPNWKxRUU5auDDTfBejh1sQ7",
 			callbackUrl: "http://mukuzu-prod.elasticbeanstalk.com/payment/callback/{galleryId}/{clientId}",
+			basePath: __dirname
 		}
 	},
 	{

@@ -141,6 +141,7 @@ exports.register = function (server, options, next) {
 			files.forEach(function(file) {
 				file.pipe(fs.createWriteStream(ORIGINALS_PATH + "/1/" + fileNumber++ + ".jpg"));
 			});
+			reply("done");
 
 		}
 	});

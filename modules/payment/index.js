@@ -3,9 +3,12 @@ var WebSocketServer = require('ws').Server,
 	fs = require("fs"),
 	socketsIo = require('socket.io');
 
+var GALLERIES_PATH = "/public/galleries/";
+
 exports.register = function (server, options, next) {
 
 	var clientList = [];
+	GALLERIES_PATH = options.basePath + GALLERIES_PATH;
 
 	var io = socketsIo.listen(server.listener);
 
@@ -13,7 +16,7 @@ exports.register = function (server, options, next) {
 
 		var clientId = Math.random().toString(36).slice(2);
 
-		socket.emit("message", { clientId: clientId });
+		socket.emit("client", { clientId: clientId });
 		console.log("emmitted");
 
 		clientList[clientId] = socket;
@@ -24,27 +27,6 @@ exports.register = function (server, options, next) {
 		});
 
 	});
-
-
-	// var wss = new WebSocketServer({ server: server });
-	// wss.on('connection', function connection(ws) {
-
-	// 	var clientId = ws.upgradeReq.url.substring(1);
-	// 	console.log(clientId);
-
-	// 	clientList[clientId] = ws;
-
-	// 	ws.on('message', function incoming(message) {
-	// 		console.log('received: %s by %s', message, clientId);
-	// 	});
-
-	// 	ws.on('close', function close() {
-	// 		console.log('%s disconnected', clientId);
-	// 		delete clientList[clientId];
-	// 	});
-
-	// });
-
 
 	server.route({
 	    method: 'GET',
@@ -80,18 +62,26 @@ exports.register = function (server, options, next) {
 			console.log(req.query);
 			if (req.query.value > 0) {
 
-				var key = JSON.parse(fs.readFileSync("public/images/key.json"));
+				var key = JSON.parse(fs.readFileSync(
+					GALLERIES_PATH + "/" + req.params.galleryId + "/key.json"
+				));
+
 				if (clientList[req.params.clientId]) {
 					var message = {
 						value: req.query.value,
 						done: true,
 						key: key
 					};
-					clientList[req.params.clientId].emit("message", JSON.stringify(message));
+					clientList[req.params.clientId].emit("key", message);
 				}
+
 				reply("*ok*");
+				return;
 
 			}
+
+			reply("*not ok, empty amount*");
+
 	    }
 	});
 
