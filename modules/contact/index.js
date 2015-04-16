@@ -11,7 +11,6 @@ transporter = nodemailer.createTransport({
 
 exports.register = function (server, options, next) {
 
-
 	server.route({
 	    method: 'POST',
 	    path: '/send',

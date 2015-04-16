@@ -105,13 +105,11 @@ exports.register = function (server, options, next) {
 	    method: 'GET',
 	    path: '/encrypt/',
 	    handler: function (req, reply) {
-
 			var galleryNumber = 1;
 			findGalleries(ORIGINALS_PATH).forEach(function(gallery) {
 				encryptGallery(galleryNumber++);
-				reply("done");
 			});
-
+			reply("done");
 	    }
 	});
 
