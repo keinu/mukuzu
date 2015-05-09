@@ -10,7 +10,7 @@ server.connection({
     port: process.env.NODE_PORT || 8080,
     routes: {
         cors: {
-            origin: ["*keinu.net", "*punntu.com", "*127.0.0.1*", "*localhost*"],
+            origin: ["*keinu.net", "*punttu.com", "*127.0.0.1*", "*localhost*"],
             isOriginExposed: false
         }
     }
@@ -39,7 +39,7 @@ server.views({
 server.register({
 		register: require('./modules/payment'),
 		options: {
-			recipient: "1LfP5qTTyxrPNWKxRUU5auDDTfBejh1sQ7",
+			recipient: process.env.BTC_ADDR || "1LfP5qTTyxrPNWKxRUU5auDDTfBejh1sQ7",
 			callbackUrl: "http://www.mukuzu.com/payment/callback/{galleryId}/{clientId}",
 			basePath: __dirname
 		}
