@@ -3,6 +3,8 @@ var WebSocketServer = require('ws').Server,
 	fs = require("fs"),
 	socketsIo = require('socket.io');
 
+var keyService = require("../../services/key/index.js");
+
 var GALLERIES_PATH = "/public/galleries/";
 
 exports.register = function (server, options, next) {
@@ -32,7 +34,9 @@ exports.register = function (server, options, next) {
 	    method: 'GET',
 	    path: '/generate/{galleryId}/{clientId}',
 	    handler: function (req, reply) {
+
 	    	var callbackUrl = options.callbackUrl.replace("{galleryId}", req.params.galleryId).replace("{clientId}", req.params.clientId);
+
 			request('https://blockchain.info/api/receive?method=create&address=' + options.recipient + '&callback=' + callbackUrl,
 				function (error, response, body) {
 
@@ -58,25 +62,26 @@ exports.register = function (server, options, next) {
 	    method: 'GET',
 	    path: '/callback/{galleryId}/{clientId}',
 	    handler: function (req, reply) {
+
 			console.log(req.params);
 			console.log(req.query);
+
 			if (req.query.value > 0) {
 
-				var key = JSON.parse(fs.readFileSync(
-					GALLERIES_PATH + "/" + req.params.galleryId + "/key.json"
-				));
+				keyService.get(req.params.galleryId).then(function(key) {
 
-				if (clientList[req.params.clientId]) {
-					var message = {
-						value: req.query.value,
-						done: true,
-						key: key
-					};
-					clientList[req.params.clientId].emit("key", message);
-				}
+					if (clientList[req.params.clientId]) {
+						var message = {
+							value: req.query.value,
+							done: true,
+							key: key
+						};
+						clientList[req.params.clientId].emit("key", message);
+					}
 
-				reply("*ok*");
-				return;
+				});
+
+				return reply("*ok*");
 
 			}
 

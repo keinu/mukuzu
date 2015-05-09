@@ -9,7 +9,11 @@ var server = new Hapi.Server();
 server.connection({
     port: process.env.NODE_PORT || 8080,
     routes: {
-      cors: true
+        cors: {
+            origin: ["keinu.net", "punntu.com", "http://127.0.0.1:4000"],
+            //matchOrigin: true,
+            //isOriginExposed: false
+        }
     }
 });
 
@@ -21,7 +25,6 @@ server.route({
        reply('hello world');
     }
 });
-
 
 server.views({
     engines: {
@@ -38,7 +41,7 @@ server.register({
 		register: require('./modules/payment'),
 		options: {
 			recipient: "1LfP5qTTyxrPNWKxRUU5auDDTfBejh1sQ7",
-			callbackUrl: "http://mukuzu-prod.elasticbeanstalk.com/payment/callback/{galleryId}/{clientId}",
+			callbackUrl: "http://www.mukuzu.com/payment/callback/{galleryId}/{clientId}",
 			basePath: __dirname
 		}
 	},
@@ -86,7 +89,6 @@ server.register({
         }
     }
 );
-
 
 server.register({
         register: require('./modules/domain')
