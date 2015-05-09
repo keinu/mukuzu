@@ -22,6 +22,7 @@ exports.register = function (server, options, next) {
 		handler: function (request, reply) {
 
 			var files = request.payload.file;
+
 			var galleryId = Math.random().toString(36).slice(2);
 
 			keyService.create(galleryId, expires).then(function(key) {
@@ -30,9 +31,13 @@ exports.register = function (server, options, next) {
 
 			}).then(function(key) {
 
-				files.forEach(function(file) {
-					uploader.uploadFile(file, key.galleryId);
-				});
+				if (files.length) {
+					files.forEach(function(file) {
+						uploader.uploadFile(file, key.galleryId);
+					});
+				} else {
+					uploader.uploadFile(files, key.galleryId);
+				}
 
 			}).done(function() {
 

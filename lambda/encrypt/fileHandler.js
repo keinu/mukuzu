@@ -44,7 +44,8 @@ module.exports = (function() {
 			Bucket: bucket || sourceBucket,
 			Key: fileName,
 			Body: data,
-			ContentType: type
+			ContentType: type,
+			Expires: new Date().setYear(2222)
 		},
 		function (err) {
 
