@@ -9,12 +9,10 @@ var server = new Hapi.Server();
 server.connection({
     port: process.env.NODE_PORT || 8080,
     routes: {
-        cors: true
-        // cors: {
-        //     origin: ["keinu.net", "punntu.com", "127.0.0.1", "localhost"],
-        //     matchOrigin: true,
-        //     isOriginExposed: true
-        // }
+        cors: {
+            origin: ["*keinu.net", "*punntu.com", "*127.0.0.1*", "*localhost*"],
+            isOriginExposed: false
+        }
     }
 });
 
