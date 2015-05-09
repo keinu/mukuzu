@@ -86,7 +86,7 @@ exports.register = function (server, options, next) {
 			function(err, data) {
 
 				if (err) {
-					throw err;
+					return reply(err);
 				}
 
 				var images = [];
@@ -115,7 +115,7 @@ exports.register = function (server, options, next) {
 
 	    	}).fail(function(err) {
 
-	    		throw err;
+	    		reply(err);
 
 	    	});
 

@@ -10,9 +10,9 @@ server.connection({
     port: process.env.NODE_PORT || 8080,
     routes: {
         cors: {
-            origin: ["keinu.net", "punntu.com", "http://127.0.0.1:4000"],
-            //matchOrigin: true,
-            //isOriginExposed: false
+            origin: ["keinu.net", "punntu.com", "127.0.0.1:4000", "localhost"],
+            matchOrigin: true,
+            isOriginExposed: false
         }
     }
 });
