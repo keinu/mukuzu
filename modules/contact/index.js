@@ -17,9 +17,9 @@ exports.register = function (server, options, next) {
 	    config: {
 	    	validate: {
 	    		payload: {
-	    			name: Joi.string().alphanum().min(3).max(30).required(),
+	    			name: Joi.string().min(3).max(30).required(),
 	    			email: Joi.string().email().required(),
-	    			message: Joi.string().alphanum().min(3).max(3000).required()
+	    			message: Joi.string().min(3).max(3000).required()
 	    		}
 	    	}
 	    },
