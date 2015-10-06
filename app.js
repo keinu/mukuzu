@@ -104,5 +104,20 @@ server.register({
     }
 );
 
+server.register({
+        register: require('./modules/music')
+    },
+    {
+        routes: {
+            prefix: '/music'
+        }
+    },
+    function (err) {
+        if (err) {
+            console.error('Failed to load plugin:', err);
+        }
+    }
+);
+
 // Start the server
 server.start();
